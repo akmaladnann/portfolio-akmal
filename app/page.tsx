@@ -42,7 +42,7 @@ const PROJECTS = [
     image: "/projects/bank-lampung.png",
     tags: ["Figma", "UI/UX", "System Analysis", "Usability Testing"],
     category: "Banking System",
-    demoUrl: "",
+    demoUrl: "https://www.figma.com/design/aJMt6cqNJzEcCSbYhH2C5W/e-Form-Web?node-id=0-1&p=f&t=9BXJy53K6anIo0sz-0",
     githubUrl: "",
   },
   {
@@ -52,7 +52,7 @@ const PROJECTS = [
     image: "/projects/healthcare.png",
     tags: ["HTML", "CSS", "Frontend Development"],
     category: "Healthcare",
-    demoUrl: "",
+    demoUrl: "https://www.figma.com/design/dUmVUUfpOdcIfQ9U8PkFbx/Desain-UI-ADSI-Kelompok-5?node-id=0-1&p=f&t=miIrdmBMv76Yf2NE-0",
     githubUrl: "",
   },
   {
@@ -62,7 +62,7 @@ const PROJECTS = [
     image: "/projects/sturent.png",
     tags: ["Figma", "UI/UX Design", "Wireframing"],
     category: "Product Design",
-    demoUrl: "",
+    demoUrl: "https://www.figma.com/design/64kwlY9cDrzH4lX7JIUmAJ/UI-DESIGN-STUDENT-RENTAL?node-id=0-1&p=f&t=sTkgJp0hEzgDX6ph-0",
     githubUrl: "",
   },
 ];
