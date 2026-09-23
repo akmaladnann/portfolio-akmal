@@ -1,34 +1,69 @@
 import Image from "next/image";
-import Link from "next/link";
+import {
+  ExternalLink,
+  FileDown,
+  Layers,
+  ArrowUpRight,
+} from "lucide-react";
+
+// Komponen Ikon GitHub bawaan SVG (aman dari isu ekspor versi library)
+function GithubIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        fillRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
 
 const PROJECTS = [
   {
     title: "SPK Pemilihan Asisten Dosen (HATS Method)",
     role: "Full-Stack Developer",
     desc: "Sistem Pendukung Keputusan berbasis web menggunakan metode Hybrid AHP-TOPSIS-SAW untuk seleksi asisten dosen dengan pembobotan kriteria dan perankingan otomatis.",
+    image: "/projects/spk-asdos.png",
     tags: ["Next.js", "React.js", "PostgreSQL", "Prisma ORM"],
     category: "Web App / Thesis",
+    demoUrl: "", // Isi dengan link demo jika sudah ada
+    githubUrl: "", // Isi dengan link GitHub repo jika publik
   },
   {
     title: "Web-Based e-Form System - Bank Lampung",
     role: "IT Staff / UI/UX & System Analyst",
     desc: "Perancangan UI/UX interaktif dan analisis alur transaksi nasabah untuk 6 fitur inti termasuk pengajuan kredit, komplain online, setor/tarik tunai, dan administrasi akun.",
+    image: "/projects/bank-lampung.png",
     tags: ["Figma", "UI/UX", "System Analysis", "Usability Testing"],
     category: "Banking System",
+    demoUrl: "https://www.figma.com/design/aJMt6cqNJzEcCSbYhH2C5W/e-Form-Web?node-id=0-1&p=f&t=7TNdNr0UytjFQo7a-0",
+    githubUrl: "",
   },
   {
     title: "Outpatient Healthcare Information System",
     role: "Frontend Developer",
     desc: "Pengembangan antarmuka sistem informasi layanan rawat jalan digital yang mempermudah navigasi pasien dan simulasi alur rekam medis.",
+    image: "/projects/healthcare.png",
     tags: ["HTML", "CSS", "Frontend Development"],
     category: "Healthcare",
+    demoUrl: "https://www.figma.com/design/dUmVUUfpOdcIfQ9U8PkFbx/Desain-UI-ADSI-Kelompok-5?node-id=0-1&t=zxDBmazBTd4eBhEl-1",
+    githubUrl: "",
   },
   {
     title: "stuRENT - Student Laptop Rental Platform",
     role: "UI/UX Designer",
     desc: "Desain sistem platform rental laptop khusus mahasiswa dengan alur sewa terintegrasi dan purwarupa interaktif berbasis riset kebutuhan pengguna.",
+    image: "/projects/sturent.png",
     tags: ["Figma", "UI/UX Design", "Wireframing"],
     category: "Product Design",
+    demoUrl: "https://www.figma.com/design/64kwlY9cDrzH4lX7JIUmAJ/UI-DESIGN-STUDENT-RENTAL?node-id=0-1&t=7B8JUyYC2P9O1GWW-1",
+    githubUrl: "",
   },
 ];
 
@@ -48,9 +83,9 @@ export default function Home() {
       {/* Navigation */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0B0F17]/80 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-lg font-bold tracking-tight text-white">
+          <a href="#" className="text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity">
             Akmal<span className="text-blue-500">.dev</span>
-          </span>
+          </a>
           <nav className="flex items-center gap-6 text-sm font-medium text-slate-400">
             <a href="#about" className="hover:text-blue-400 transition-colors">Tentang</a>
             <a href="#projects" className="hover:text-blue-400 transition-colors">Proyek</a>
@@ -78,20 +113,30 @@ export default function Home() {
           <p className="text-base md:text-lg text-slate-400 max-w-xl leading-relaxed">
             Sarjana Ilmu Komputer (IPK 3.47) Universitas Lampung dengan fokus pada Full-Stack Web Development, System Analysis, dan UI/UX Design.
           </p>
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
             <a
               href="#projects"
-              className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all shadow-lg shadow-blue-500/20"
+              className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all shadow-lg shadow-blue-500/20 inline-flex items-center gap-2"
             >
               Lihat Portofolio
+              <ArrowUpRight className="w-4 h-4" />
             </a>
             <a
               href="https://linkedin.com/in/akmal-adnan-djayasinga"
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-3 rounded-lg border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-medium text-sm transition-all"
+              className="px-5 py-2.5 rounded-lg border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-medium text-sm transition-all inline-flex items-center gap-2"
             >
               LinkedIn Profile
+              <ExternalLink className="w-4 h-4" />
+            </a>
+            <a
+              href="/CV-AKMAL ADNAN DJAYASINGA.pdf"
+              download
+              className="px-5 py-2.5 rounded-lg border border-slate-700/80 bg-slate-900/30 hover:bg-slate-800 text-slate-300 hover:text-white font-medium text-sm transition-all inline-flex items-center gap-2"
+            >
+              <FileDown className="w-4 h-4 text-blue-400" />
+              Download CV
             </a>
           </div>
         </div>
@@ -104,6 +149,7 @@ export default function Home() {
               src="/akmal.png"
               alt="Akmal Adnan Djayasinga"
               fill
+              sizes="(max-width: 768px) 256px, 288px"
               className="object-cover object-top filter brightness-95 contrast-105"
               priority
             />
@@ -206,39 +252,89 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-16 border-t border-white/5">
-        <div className="space-y-3 mb-12">
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-20 border-t border-white/5">
+        <div className="space-y-3 mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
+            <Layers className="w-3.5 h-3.5" />
+            Showcase Proyek
+          </div>
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Proyek Pilihan</h2>
-          <p className="text-sm text-slate-400">Koleksi implementasi sistem web, algoritma DSS, dan perancangan UI/UX.</p>
+          <p className="text-sm text-slate-400 max-w-xl">
+            Implementasi nyata sistem web, arsitektur database relasional, dan perancangan antarmuka pengguna interaktif.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PROJECTS.map((project, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-xl bg-[#161B26] border border-white/5 hover:border-blue-500/40 transition-all flex flex-col justify-between group"
+              className="group rounded-2xl bg-[#161B26] border border-white/5 hover:border-blue-500/40 transition-all duration-300 overflow-hidden flex flex-col hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1"
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs text-blue-400 font-mono">
-                  <span>{project.category}</span>
-                  <span className="text-slate-500">{project.role}</span>
-                </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  {project.desc}
-                </p>
+              {/* Thumbnail Proyek */}
+              <div className="relative w-full h-52 sm:h-56 bg-[#0E131F] overflow-hidden border-b border-white/5">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <div className="flex flex-wrap gap-2 mt-6">
-                {project.tags.map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
+
+              {/* Konten Card */}
+              <div className="p-6 flex flex-col flex-1 justify-between">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-blue-400 font-mono mb-2">
+                    <span className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">{project.category}</span>
+                    <span className="text-slate-500">{project.role}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors mt-3 mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
+                    {project.desc}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/5 space-y-4">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] font-mono text-slate-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Tombol Tautan (Jika ada link demo / github) */}
+                  <div className="flex items-center gap-3 pt-1">
+                    {project.demoUrl ? (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded-md transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Live Demo
+                      </a>
+                    ) : null}
+                    {project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 px-3 py-1.5 rounded-md transition-colors"
+                      >
+                        <GithubIcon className="w-3.5 h-3.5" />
+                        Repository
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
