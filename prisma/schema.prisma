@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Model pesan dari form kontak portofolio
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// Model untuk daftar proyek
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  category    String   // contoh: "Web App", "UI/UX", "System Analysis"
+  description String
+  tags        String[] // ["Next.js", "PostgreSQL", "Prisma"]
+  demoUrl     String?
+  githubUrl   String?
+  imageUrl    String?
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
