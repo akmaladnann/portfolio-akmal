@@ -6,7 +6,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-// Komponen Ikon GitHub bawaan SVG (aman dari isu ekspor versi library)
+// Komponen Ikon GitHub bawaan SVG
 function GithubIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
   return (
     <svg
@@ -32,8 +32,8 @@ const PROJECTS = [
     image: "/projects/spk-asdos.png",
     tags: ["Next.js", "React.js", "PostgreSQL", "Prisma ORM"],
     category: "Web App / Thesis",
-    demoUrl: "", // Isi dengan link demo jika sudah ada
-    githubUrl: "", // Isi dengan link GitHub repo jika publik
+    demoUrl: "", // Isi dengan link demo kamu
+    githubUrl: "", // Isi dengan link repo jika ada
   },
   {
     title: "Web-Based e-Form System - Bank Lampung",
@@ -42,7 +42,7 @@ const PROJECTS = [
     image: "/projects/bank-lampung.png",
     tags: ["Figma", "UI/UX", "System Analysis", "Usability Testing"],
     category: "Banking System",
-    demoUrl: "https://www.figma.com/design/aJMt6cqNJzEcCSbYhH2C5W/e-Form-Web?node-id=0-1&p=f&t=7TNdNr0UytjFQo7a-0",
+    demoUrl: "",
     githubUrl: "",
   },
   {
@@ -52,7 +52,7 @@ const PROJECTS = [
     image: "/projects/healthcare.png",
     tags: ["HTML", "CSS", "Frontend Development"],
     category: "Healthcare",
-    demoUrl: "https://www.figma.com/design/dUmVUUfpOdcIfQ9U8PkFbx/Desain-UI-ADSI-Kelompok-5?node-id=0-1&t=zxDBmazBTd4eBhEl-1",
+    demoUrl: "",
     githubUrl: "",
   },
   {
@@ -62,7 +62,7 @@ const PROJECTS = [
     image: "/projects/sturent.png",
     tags: ["Figma", "UI/UX Design", "Wireframing"],
     category: "Product Design",
-    demoUrl: "https://www.figma.com/design/64kwlY9cDrzH4lX7JIUmAJ/UI-DESIGN-STUDENT-RENTAL?node-id=0-1&t=7B8JUyYC2P9O1GWW-1",
+    demoUrl: "",
     githubUrl: "",
   },
 ];
@@ -80,23 +80,38 @@ export default function Home() {
       {/* Background Subtle Glow */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] bg-gradient-to-b from-blue-600/10 via-transparent to-transparent blur-3xl pointer-events-none -z-10" />
 
-      {/* Navigation */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0B0F17]/80 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" className="text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity">
+      {/* Navigation (Diperbaiki Responsivitasnya untuk Mobile) */}
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0B0F17]/85 border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between">
+          <a
+            href="#"
+            className="text-base sm:text-lg font-bold tracking-tight text-white hover:opacity-90 transition-opacity"
+          >
             Akmal<span className="text-blue-500">.dev</span>
           </a>
-          <nav className="flex items-center gap-6 text-sm font-medium text-slate-400">
-            <a href="#about" className="hover:text-blue-400 transition-colors">Tentang</a>
-            <a href="#projects" className="hover:text-blue-400 transition-colors">Proyek</a>
-            <a href="#skills" className="hover:text-blue-400 transition-colors">Keahlian</a>
+
+          <div className="flex items-center gap-4 sm:gap-6">
+            {/* Menu Navigasi Teks: Tersembunyi di HP kecil (hidden), Muncul rapi di Layar Tablet/Desktop (md:flex) */}
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+              <a href="#about" className="hover:text-blue-400 transition-colors">
+                Tentang
+              </a>
+              <a href="#projects" className="hover:text-blue-400 transition-colors">
+                Proyek
+              </a>
+              <a href="#skills" className="hover:text-blue-400 transition-colors">
+                Keahlian
+              </a>
+            </nav>
+
+            {/* Tombol Kontak: Selalu Tampil Rapi & Proporsional di Semua Ukuran Layar */}
             <a
               href="mailto:akmaladnan594@gmail.com"
-              className="px-4 py-1.5 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition-colors text-xs font-semibold"
+              className="px-3.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-blue-600 text-white hover:bg-blue-500 transition-colors text-xs font-semibold shadow-sm shadow-blue-500/20"
             >
               Kontak
             </a>
-          </nav>
+          </div>
         </div>
       </header>
 
@@ -131,7 +146,7 @@ export default function Home() {
               <ExternalLink className="w-4 h-4" />
             </a>
             <a
-              href="/CV-AKMAL ADNAN DJAYASINGA.pdf"
+              href="/cv-akmal.pdf"
               download
               className="px-5 py-2.5 rounded-lg border border-slate-700/80 bg-slate-900/30 hover:bg-slate-800 text-slate-300 hover:text-white font-medium text-sm transition-all inline-flex items-center gap-2"
             >
