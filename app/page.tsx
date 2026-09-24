@@ -146,7 +146,7 @@ export default function Home() {
               <ExternalLink className="w-4 h-4" />
             </a>
             <a
-              href="/cv-akmal.pdf"
+              href="/CV-AKMAL ADNAN DJAYASINGA.pdf"
               download
               className="px-5 py-2.5 rounded-lg border border-slate-700/80 bg-slate-900/30 hover:bg-slate-800 text-slate-300 hover:text-white font-medium text-sm transition-all inline-flex items-center gap-2"
             >
